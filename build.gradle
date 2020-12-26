@@ -1,0 +1,360 @@
+import org.springframework.boot.gradle.plugin.SpringBootPlugin
+
+buildscript {
+  repositories {
+    /**
+     * https://maven.aliyun.com/mvn/view
+     * 仓库名称	        代理源地址	                                使用地址
+     * central	        https://repo1.maven.org/maven2/	          https://maven.aliyun.com/repository/central 或 https://maven.aliyun.com/nexus/content/repositories/central
+     * jcenter	        http://jcenter.bintray.com/	              https://maven.aliyun.com/repository/jcenter 或 https://maven.aliyun.com/nexus/content/repositories/jcenter
+     * public	          central仓和jcenter仓的聚合仓	                https://maven.aliyun.com/repository/public 或https://maven.aliyun.com/nexus/content/groups/public
+     * google	          https://maven.google.com/	                https://maven.aliyun.com/repository/google 或 https://maven.aliyun.com/nexus/content/repositories/google
+     * gradle-plugin	  https://plugins.gradle.org/m2/	          https://maven.aliyun.com/repository/gradle-plugin 或 https://maven.aliyun.com/nexus/content/repositories/gradle-plugin
+     * spring	          http://repo.spring.io/libs-milestone/	    https://maven.aliyun.com/repository/spring 或 https://maven.aliyun.com/nexus/content/repositories/spring
+     * spring-plugin	  http://repo.spring.io/plugins-release/	  https://maven.aliyun.com/repository/spring-plugin 或 https://maven.aliyun.com/nexus/content/repositories/spring-plugin
+     * grails-core	    https://repo.grails.org/grails/core	      https://maven.aliyun.com/repository/grails-core 或 https://maven.aliyun.com/nexus/content/repositories/grails-core
+     * apache snapshots	https://repository.apache.org/snapshots/	https://maven.aliyun.com/repository/apache-snapshots 或 https://maven.aliyun.com/nexus/content/repositories/apache-snapshots
+     */
+    def ALIYUN_REPOSITORY_URL = 'https://maven.aliyun.com/repository/public'
+    def ALIYUN_SPRING_URL = "https://maven.aliyun.com/repository/spring"
+    def ALIYUN_SPRING_PLUGIN_URL = "https://maven.aliyun.com/repository/spring-plugin"
+    def ALIYUN_GRADLE_PLUGIN_URL = "https://maven.aliyun.com/repository/gradle-plugin"
+    def ALIYUN_GOOGLE_URL = "https://maven.aliyun.com/repository/google"
+    def ALIYUN_GRAILS_CORE_URL = "https://maven.aliyun.com/repository/grails-core"
+    def ALIYUN_APACHE_SNAPSHOTS_URL = "https://maven.aliyun.com/repository/apache-snapshots"
+    all { ArtifactRepository repo ->
+      if (repo instanceof MavenArtifactRepository) {
+        def url = repo.url.toString()
+        if (url.startsWith('https://repo1.maven.org/maven2')
+                || url.startsWith('https://jcenter.bintray.com')) {
+          project.logger.lifecycle "Repository ${repo.url} replaced by $ALIYUN_REPOSITORY_URL."
+          remove repo
+        }
+
+        if (url.startsWith('http://repo.spring.io/libs-milestone')) {
+          project.logger.lifecycle "Repository ${repo.url} replaced by $ALIYUN_SPRING_URL."
+          remove repo
+        }
+
+        if (url.startsWith('http://repo.spring.io/plugins-release')) {
+          project.logger.lifecycle "Repository ${repo.url} replaced by $ALIYUN_SPRING_PLUGIN_URL."
+          remove repo
+        }
+
+        if (url.startsWith('https://plugins.gradle.org/m2')) {
+          project.logger.lifecycle "Repository ${repo.url} replaced by $ALIYUN_GRADLE_PLUGIN_URL."
+          remove repo
+        }
+
+        if (url.startsWith('https://maven.google.com')) {
+          project.logger.lifecycle "Repository ${repo.url} replaced by $ALIYUN_GOOGLE_URL."
+          remove repo
+        }
+
+        if (url.startsWith('https://repo.grails.org/grails/core')) {
+          project.logger.lifecycle "Repository ${repo.url} replaced by $ALIYUN_GRAILS_CORE_URL."
+          remove repo
+        }
+
+        if (url.startsWith('https://repository.apache.org/snapshots/')) {
+          project.logger.lifecycle "Repository ${repo.url} replaced by $ALIYUN_APACHE_SNAPSHOTS_URL."
+          remove repo
+        }
+      }
+    }
+    maven {
+      mavenLocal()
+      url ALIYUN_REPOSITORY_URL
+      mavenCentral()
+    }
+    maven {
+      url ALIYUN_SPRING_URL
+    }
+    maven {
+      url ALIYUN_SPRING_PLUGIN_URL
+    }
+    maven {
+      url ALIYUN_GRADLE_PLUGIN_URL
+    }
+    maven {
+      url ALIYUN_GOOGLE_URL
+    }
+    maven {
+      url ALIYUN_GRAILS_CORE_URL
+    }
+    maven {
+      url ALIYUN_APACHE_SNAPSHOTS_URL
+    }
+  }
+  /**
+   * gradle所有的jar包文件坐标都在dependencies属性内放置
+   * 每一个jar包都具备以下特点
+   * 1.scope（作用域）：gradle支持compile、runtime、testCompile、testRuntime四种scope
+   *   compile：jar包在编译期与运行期依赖。
+   *   runtime：jar包在运行期依赖。
+   *   testCompile：jar包在测试编译期与运行期依赖。
+   *   testRuntime：jar包在测试运行期依赖。
+   *   补充：
+   *   providedCompile：jar包/依赖代码 仅在编译的时候需要，但是在运行时不需要依赖。
+   *   providedCompile与compile,runtime区别：
+   *   compile: 前提：apply plugin: 'war'或者apply plugin: 'java'
+   *   providedCompile:前提：apply plugin: 'war'，若前提为'java',则使用compileOnly
+   *   runtime:前提：apply plugin: 'war'
+   *   以上所说的前提，如果不正确配置的话，就会遇到依赖包无法导入，以及runtime以及providedCompile无法使用的情况。
+   * 2. group:与maven的groupId一致。
+   *    name:与maven的artifactId一致。
+   *    version:与maven的version一致。
+   */
+  dependencies {
+    classpath "io.spring.gradle:dependency-management-plugin:${springIOVersion}"
+    classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+    classpath "org.junit.platform:junit-platform-gradle-plugin:1.0.1"
+  }
+}
+
+/**
+ * 定义插件
+ */
+plugins {
+  id "org.springframework.boot" version "${springBootVersion}" apply false
+  id "io.franzbecker.gradle-lombok" version "4.0.0" apply false
+}
+
+/**
+ * 加载引入版本定义变量
+ */
+apply from: "$rootDir/versionsOfDependencies.gradle"
+
+/**
+ * 引入所有模块的配置，包括父模块,子模块
+ */
+allprojects {
+  // jar包的group ，version配置
+  group 'com.java.${projectName}'
+  version '1.0-SNAPSHOT'
+
+  // 定义全局变量
+  ext {
+    projectName = rootProject.name
+  }
+
+  apply plugin: "jacoco"
+  apply plugin: "idea"
+
+  // 私服地址
+  repositories {
+    def ALIYUN_REPOSITORY_URL = 'http://maven.aliyun.com/nexus/content/groups/public'
+    def ALIYUN_SPRING_URL = "https://maven.aliyun.com/repository/spring"
+    def ALIYUN_SPRING_PLUGIN_URL = "https://maven.aliyun.com/repository/spring-plugin"
+    def ALIYUN_GRADLE_PLUGIN_URL = "https://maven.aliyun.com/repository/gradle-plugin"
+    def ALIYUN_GOOGLE_URL = "https://maven.aliyun.com/repository/google"
+    def ALIYUN_GRAILS_CORE_URL = "https://maven.aliyun.com/repository/grails-core"
+    def ALIYUN_APACHE_SNAPSHOTS_URL = "https://maven.aliyun.com/repository/apache-snapshots"
+    all { ArtifactRepository repo ->
+      if (repo instanceof MavenArtifactRepository) {
+        def url = repo.url.toString()
+        if (url.startsWith('https://repo1.maven.org/maven2')
+                || url.startsWith('https://jcenter.bintray.com')) {
+          project.logger.lifecycle "Repository ${repo.url} replaced by $ALIYUN_REPOSITORY_URL."
+          remove repo
+        }
+
+        if (url.startsWith('http://repo.spring.io/libs-milestone')) {
+          project.logger.lifecycle "Repository ${repo.url} replaced by $ALIYUN_SPRING_URL."
+          remove repo
+        }
+
+        if (url.startsWith('http://repo.spring.io/plugins-release')) {
+          project.logger.lifecycle "Repository ${repo.url} replaced by $ALIYUN_SPRING_PLUGIN_URL."
+          remove repo
+        }
+
+        if (url.startsWith('https://plugins.gradle.org/m2')) {
+          project.logger.lifecycle "Repository ${repo.url} replaced by $ALIYUN_GRADLE_PLUGIN_URL."
+          remove repo
+        }
+
+        if (url.startsWith('https://maven.google.com')) {
+          project.logger.lifecycle "Repository ${repo.url} replaced by $ALIYUN_GOOGLE_URL."
+          remove repo
+        }
+
+        if (url.startsWith('https://repo.grails.org/grails/core')) {
+          project.logger.lifecycle "Repository ${repo.url} replaced by $ALIYUN_GRAILS_CORE_URL."
+          remove repo
+        }
+
+        if (url.startsWith('https://repository.apache.org/snapshots/')) {
+          project.logger.lifecycle "Repository ${repo.url} replaced by $ALIYUN_APACHE_SNAPSHOTS_URL."
+          remove repo
+        }
+      }
+    }
+    maven {
+      mavenLocal()
+      url ALIYUN_REPOSITORY_URL
+      mavenCentral()
+    }
+    maven {
+      url ALIYUN_SPRING_URL
+    }
+    maven {
+      url ALIYUN_SPRING_PLUGIN_URL
+    }
+    maven {
+      url ALIYUN_GRADLE_PLUGIN_URL
+    }
+    maven {
+      url ALIYUN_GOOGLE_URL
+    }
+    maven {
+      url ALIYUN_GRAILS_CORE_URL
+    }
+    maven {
+      url ALIYUN_APACHE_SNAPSHOTS_URL
+    }
+  }
+}
+
+/**
+ * 定义只有子工程才会执行的task
+ */
+subprojects {
+  // 导入使用的插件
+  apply plugin: "java"
+  apply plugin: 'java-library'
+  apply plugin: "checkstyle"
+  apply plugin: "io.spring.dependency-management"
+  apply plugin: 'org.springframework.boot'
+  apply plugin: "org.junit.platform.gradle.plugin"
+
+  // jdk编译版本
+  sourceCompatibility = JavaVersion.VERSION_11
+  targetCompatibility = JavaVersion.VERSION_11
+
+  // 指定gradle编译时，针对java文件使用 UTF-8 编码
+  tasks.withType(JavaCompile) {
+    options.encoding = 'UTF-8'
+  }
+
+  /**
+   * 导入spring alibaba cloud的pom文件，能够免去自己管理版本
+   * PS: 在Spring官网指导上面有另外一种配置，那种配置需要配置main class，一会说明
+   */
+  dependencyManagement {
+    imports {
+      mavenBom SpringBootPlugin.BOM_COORDINATES
+      mavenBom "com.squareup.okhttp3:okhttp-bom:4.9.0"
+      mavenBom "org.keycloak:keycloak-dependencies-server-all:${oauth2.revKeycloak}"
+    }
+
+    /** 在这里定义公用依赖 */
+    dependencies {
+      /** 通用工具 */
+      dependency("org.projectlombok:lombok:${revLombok}")
+      dependency("org.apache.commons:commons-lang3:${revApacheCommonsLang3}")
+      dependency('com.google.guava:guava:20.0')
+      dependency('org.mapstruct:mapstruct:1.3.1.Final')
+      dependency('org.mapstruct:mapstruct-processor:1.3.1.Final')
+      dependency('org.mapstruct:mapstruct-jdk8:1.3.1.Final')
+      dependency('com.google.code.gson:gson:2.8.6')
+      dependency('com.alibaba:fastjson:1.2.75')
+
+      dependency("org.springframework.security.oauth.boot:spring-security-oauth2-autoconfigure:${springBootVersion}")
+
+      dependency("org.jboss.resteasy:resteasy-core:${oauth2.revJbossResteasy}")
+      dependency("org.jboss.resteasy:resteasy-jackson2-provider:${oauth2.revJbossResteasy}")
+
+      dependency("com.h2database:h2:${revH2database}")
+    }
+  }
+
+  ext {
+    generatedSourcesDir = file("${buildDir}/generated/sources")
+    generatedSourcesJavaDir = file("${project.generatedSourcesDir}/main/java")
+  }
+
+  idea.module {
+    sourceDirs += project.generatedSourcesJavaDir
+    generatedSourceDirs += project.generatedSourcesJavaDir
+  }
+
+  configurations {
+    all*.exclude module: 'commons-logging'
+    all*.exclude module: 'slf4j-log4j12'
+    all*.exclude module: 'log4j'
+    all*.exclude module: 'logback-classic'
+    all*.exclude group: "javax.servlet", module: "servlet-api"
+    all*.exclude group: "org.springframework.boot", module: "spring-boot-starter-logging"
+  }
+
+
+  dependencies {
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
+    implementation('org.springframework.boot:spring-boot-starter-log4j2')
+
+    /*******************************
+     * Annotation Processors
+     *******************************/
+    annotationProcessor 'org.projectlombok:lombok'
+    annotationProcessor 'org.mapstruct:mapstruct-processor'
+
+    /*******************************
+     * Compile Dependencies
+     *******************************/
+    compile 'org.mapstruct:mapstruct-jdk8'
+
+    /*******************************
+     * Compile Only Dependencies
+     *******************************/
+    compileOnly 'org.projectlombok:lombok'
+
+    /*******************************
+     * Runtime Only Dependencies
+     *******************************/
+
+
+    /*******************************
+     * Test Dependencies
+     *******************************/
+    testImplementation("org.springframework.boot:spring-boot-starter-test")
+    testImplementation("org.junit.jupiter:junit-jupiter-api")
+    testImplementation("org.junit.jupiter:junit-jupiter-params")
+    testImplementation("io.specto:hoverfly-java-junit5:0.13.1")
+
+    testAnnotationProcessor 'org.projectlombok:lombok'
+    testAnnotationProcessor("org.mapstruct:mapstruct-processor")
+
+    testCompileOnly 'org.projectlombok:lombok'
+
+    testRuntimeOnly("org.junit.platform:junit-platform-launcher:1.0.1")
+    testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine")
+    testRuntimeOnly("org.junit.vintage:junit-vintage-engine")
+  }
+
+  compileJava {
+    options.annotationProcessorGeneratedSourcesDirectory = project.generatedSourcesJavaDir
+    options.compilerArgs += [
+            "-Xlint:unchecked",
+            "-Xlint:deprecation",
+            "-s",
+            project.generatedSourcesJavaDir
+    ]
+  }
+
+  compileTestJava {
+    options.compilerArgs += [
+            "-Xlint:unchecked",
+            "-Xlint:deprecation"
+    ]
+  }
+
+  // 打包源码
+  task sourceJar(type: Jar) {
+    from sourceSets.main.allJava
+  }
+
+  test {
+    useJUnitPlatform()
+  }
+}

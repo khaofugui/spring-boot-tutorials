@@ -1,0 +1,6 @@
+spring:
+  application:
+    name: spring-boot-hoverfly
+
+server:
+  port: 9080

@@ -3,7 +3,9 @@
  */
 ext {
   revLombok = '1.18.16'
-  revApacheCommonsLang3 = '3.10'
+  revSwagger= '3.0.0'
+  revKnife4jStarter = '3.0.2'
+  revApacheCommonsLang3 = '3.11'
   revH2database = '1.4.200'
   oauth2 = [
           revJbossResteasy: '4.5.8.Final',

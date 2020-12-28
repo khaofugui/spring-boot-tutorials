@@ -143,7 +143,7 @@ allprojects {
 
   // 私服地址
   repositories {
-    def ALIYUN_REPOSITORY_URL = 'http://maven.aliyun.com/nexus/content/groups/public'
+    def ALIYUN_REPOSITORY_URL = 'https://maven.aliyun.com/repository/public'
     def ALIYUN_SPRING_URL = "https://maven.aliyun.com/repository/spring"
     def ALIYUN_SPRING_PLUGIN_URL = "https://maven.aliyun.com/repository/spring-plugin"
     def ALIYUN_GRADLE_PLUGIN_URL = "https://maven.aliyun.com/repository/gradle-plugin"
@@ -266,6 +266,9 @@ subprojects {
       dependency("org.jboss.resteasy:resteasy-jackson2-provider:${oauth2.revJbossResteasy}")
 
       dependency("com.h2database:h2:${revH2database}")
+
+      dependency("io.springfox:springfox-boot-starter:${revSwagger}")
+      dependency("com.github.xiaoymin:knife4j-spring-boot-starter:${revKnife4jStarter}")
     }
   }
 

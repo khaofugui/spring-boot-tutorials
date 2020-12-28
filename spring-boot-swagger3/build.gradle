@@ -1,0 +1,44 @@
+dependencies {
+    /*******************************
+     * Annotation Processors
+     *******************************/
+    annotationProcessor "org.springframework.boot:spring-boot-configuration-processor"
+
+    /*******************************
+     * API Dependencies
+     *******************************/
+
+    /*******************************
+     * Implementation Dependencies
+     *******************************/
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+    implementation 'io.springfox:springfox-boot-starter'
+    implementation 'org.apache.commons:commons-lang3'
+    implementation 'com.github.xiaoymin:knife4j-spring-boot-starter'
+
+    /*******************************
+     * Compile Only Dependencies
+     *******************************/
+
+    /*******************************
+     * Runtime Only Dependencies
+     *******************************/
+
+    /*******************************
+     * Test Dependencies
+     *******************************/
+    testImplementation('org.springframework.boot:spring-boot-starter-test') {
+        exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
+    }
+}
+
+compileJava {
+    options.compilerArgs = [
+            '-Amapstruct.suppressGeneratorTimestamp=true',
+            '-Amapstruct.suppressGeneratorVersionInfoComment=true'
+    ]
+}
+
+test {
+    useJUnitPlatform()
+}

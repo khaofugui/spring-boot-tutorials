@@ -1,0 +1,46 @@
+plugins {
+    id 'java'
+    id 'com.palantir.docker' apply true
+}
+
+dependencies {
+    /*******************************
+     * Annotation Processors
+     *******************************/
+
+    /*******************************
+     * API Dependencies
+     *******************************/
+
+    /*******************************
+     * Implementation Dependencies
+     *******************************/
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+
+    /*******************************
+     * Compile Only Dependencies
+     *******************************/
+
+    /*******************************
+     * Runtime Only Dependencies
+     *******************************/
+
+    /*******************************
+     * Test Dependencies
+     *******************************/
+    testImplementation('org.springframework.boot:spring-boot-starter-test') {
+        exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
+    }
+}
+
+docker {
+    dependsOn build
+    dockerfile file('src/main/resources/docker/Dockerfile') //DockerFile路径，如果没有该配置可直接将Dockerfile放在项目的根目录
+    name "${project.group}/${bootJar.archiveBaseName.get()}"
+    files bootJar.archiveFile.get()
+    buildArgs(['JAR_FILE': "${bootJar.archiveFileName.get()}"])
+}
+
+test {
+    useJUnitPlatform()
+}

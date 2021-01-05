@@ -1,7 +1,4 @@
-plugins {
-    id 'java'
-    id 'com.palantir.docker' apply true
-}
+apply plugin: 'com.palantir.docker'
 
 dependencies {
     /*******************************
@@ -39,8 +36,4 @@ docker {
     name "${project.group}/${bootJar.archiveBaseName.get()}"
     files bootJar.archiveFile.get()
     buildArgs(['JAR_FILE': "${bootJar.archiveFileName.get()}"])
-}
-
-test {
-    useJUnitPlatform()
 }

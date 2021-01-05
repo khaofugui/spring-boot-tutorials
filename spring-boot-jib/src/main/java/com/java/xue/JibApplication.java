@@ -7,17 +7,17 @@ import org.springframework.web.bind.annotation.RestController;
 
 /**
  * @author xue.zeng
- * @date 2020/12/28 12:03 PM
+ * @date 2020/12/30 4:53 PM
  */
 @RestController
 @SpringBootApplication
-public class DockerfileApplication {
+public class JibApplication {
   public static void main(final String[] args) {
-    SpringApplication.run(DockerfileApplication.class);
+    SpringApplication.run(JibApplication.class);
   }
 
-  @GetMapping("/docker/hello")
-  public String helloDocker() {
-    return "hello docker";
+  @GetMapping("/jib/hello")
+  public String helloJib() {
+    return "hello jib";
   }
 }

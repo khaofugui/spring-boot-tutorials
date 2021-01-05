@@ -1,0 +1,55 @@
+apply plugin: 'com.google.cloud.tools.jib'
+
+dependencies {
+  /*******************************
+   * Annotation Processors
+   *******************************/
+
+  /*******************************
+   * API Dependencies
+   *******************************/
+
+  /*******************************
+   * Implementation Dependencies
+   *******************************/
+  implementation 'org.springframework.boot:spring-boot-starter-web'
+
+  /*******************************
+   * Compile Only Dependencies
+   *******************************/
+
+  /*******************************
+   * Runtime Only Dependencies
+   *******************************/
+
+  /*******************************
+   * Test Dependencies
+   *******************************/
+  testImplementation('org.springframework.boot:spring-boot-starter-test') {
+    exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
+  }
+}
+
+jib {
+  from {
+    image = 'registry.hub.docker.com/adoptopenjdk/openjdk11'
+    allowInsecureRegistries = true
+    auth {
+      username = 'xue2zeng'
+      password = 'outlook.com1988'
+    }
+  }
+  to {
+    image = 'registry.hub.docker.com/spring-boot-jib'
+    auth {
+      username = 'xue2zeng'
+      password = 'outlook.com1988'
+    }
+  }
+  container {
+    creationTime = 'USE_CURRENT_TIMESTAMP'
+    jvmFlags = ['-Djava.security.egd=file:/dev/./urandom', '-Dfile.encoding=utf-8', '-Duser.timezone=Asia/Shanghai']
+    mainClass = 'com.java.xue.JibApplication'
+    ports = ['8080']
+  }
+}

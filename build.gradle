@@ -110,6 +110,7 @@ buildscript {
     classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
     classpath "org.junit.platform:junit-platform-gradle-plugin:1.0.1"
     classpath('com.palantir.gradle.docker:gradle-docker:0.25.0')
+    classpath('com.google.cloud.tools.jib:com.google.cloud.tools.jib.gradle.plugin:2.7.0')
   }
 }
 
@@ -119,6 +120,7 @@ buildscript {
 plugins {
   id "org.springframework.boot" version "${springBootVersion}" apply false
   id "io.franzbecker.gradle-lombok" version "4.0.0" apply false
+  id 'com.google.cloud.tools.jib' version '2.7.0' apply false
 }
 
 /**
@@ -301,7 +303,8 @@ subprojects {
     /*******************************
      * Compile Dependencies
      *******************************/
-    compile 'org.mapstruct:mapstruct-jdk8'
+    api 'org.mapstruct:mapstruct-jdk8'
+    api 'com.google.guava:guava'
 
     /*******************************
      * Compile Only Dependencies

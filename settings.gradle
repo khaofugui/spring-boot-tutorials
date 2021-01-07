@@ -1,9 +1,10 @@
 rootProject.name = 'spring-boot-tutorials'
-include 'spring-boot-hoverfly', 'spring-boot-hoverfly-client'
+include 'spring-boot-hoverfly:spring-boot-hoverfly-server', 'spring-boot-hoverfly:spring-boot-hoverfly-client'
 include 'spring-boot-security5:oauth2-sample-authorization-server', 'spring-boot-security5:oauth2-keycloak-authorization-server'
 include 'spring-boot-swagger3'
 include 'spring-boot-dockerfile'
 include 'spring-boot-jib'
 include 'spring-boot-graalvm'
 include 'spring-boot-jvm-optimize'
+include 'spring-boot-retrofit'
 

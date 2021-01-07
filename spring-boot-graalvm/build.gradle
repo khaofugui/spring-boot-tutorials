@@ -1,0 +1,31 @@
+dependencies {
+    /*******************************
+     * Annotation Processors
+     *******************************/
+
+    /*******************************
+     * API Dependencies
+     *******************************/
+
+    /*******************************
+     * Implementation Dependencies
+     *******************************/
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+    implementation 'org.springframework.experimental:spring-graalvm-native'
+    implementation 'org.springframework:spring-context-indexer'
+
+    /*******************************
+     * Compile Only Dependencies
+     *******************************/
+
+    /*******************************
+     * Runtime Only Dependencies
+     *******************************/
+
+    /*******************************
+     * Test Dependencies
+     *******************************/
+    testImplementation('org.springframework.boot:spring-boot-starter-test') {
+        exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
+    }
+}

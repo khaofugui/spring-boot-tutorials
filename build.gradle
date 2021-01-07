@@ -267,6 +267,8 @@ subprojects {
 
       dependency("io.springfox:springfox-boot-starter:${revSwagger}")
       dependency("com.github.xiaoymin:knife4j-spring-boot-starter:${revKnife4jStarter}")
+
+      dependency("org.springframework.experimental:spring-graalvm-native:0.8.5")
     }
   }
 

@@ -4,4 +4,6 @@ include 'spring-boot-security5:oauth2-sample-authorization-server', 'spring-boot
 include 'spring-boot-swagger3'
 include 'spring-boot-dockerfile'
 include 'spring-boot-jib'
+include 'spring-boot-graalvm'
+include 'spring-boot-jvm-optimize'
 

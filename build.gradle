@@ -66,6 +66,7 @@ buildscript {
       mavenLocal()
       url ALIYUN_REPOSITORY_URL
       mavenCentral()
+      gradlePluginPortal()
     }
     maven {
       url ALIYUN_SPRING_URL
@@ -134,6 +135,7 @@ apply from: "$rootDir/versionsOfDependencies.gradle"
 allprojects {
   apply plugin: "jacoco"
   apply plugin: "idea"
+  apply plugin: "eclipse"
 
   // 私服地址
   repositories {
@@ -269,6 +271,9 @@ subprojects {
       dependency("com.github.xiaoymin:knife4j-spring-boot-starter:${revKnife4jStarter}")
 
       dependency("org.springframework.experimental:spring-graalvm-native:0.8.5")
+
+      dependency("com.github.lianjiatech:retrofit-spring-boot-starter:2.2.5")
+      dependency("com.alibaba.csp:sentinel-core:1.8.0")
     }
   }
 

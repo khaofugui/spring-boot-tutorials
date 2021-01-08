@@ -2,7 +2,7 @@
 <p align="center">
   <a href="https://www.oracle.com/technetwork/java/javase/downloads/index.html"><img alt="JDK" src="https://img.shields.io/badge/JDK-11.0.9-orange.svg"/></a>
   <a href="https://docs.spring.io/spring-boot/docs/2.4.0/reference/htmlsingle/"><img alt="Spring Boot" src="https://img.shields.io/badge/Spring%20Boot-2.4.0-brightgreen.svg"/></a>
-  <a href="https://xue2zeng.github.io"><img alt="author" src="https://img.shields.io/badge/author-xue.zeng-blue.svg"/></a>  
+  <a href="https://xue2zeng.github.io"><img alt="author" src="https://img.shields.io/badge/Author-xue.zeng-blue.svg"/></a>  
   <a href="https://github.com/xue2zeng/spring-boot-tutorials/blob/main/LICENSE"><img alt="LICENSE" src="https://img.shields.io/github/license/xue2zeng/spring-boot-tutorials.svg"/></a>
 </p>
 

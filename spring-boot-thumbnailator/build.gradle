@@ -1,0 +1,30 @@
+dependencies {
+    /*******************************
+     * Annotation Processors
+     *******************************/
+
+    /*******************************
+     * API Dependencies
+     *******************************/
+
+    /*******************************
+     * Implementation Dependencies
+     *******************************/
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+    implementation 'net.coobird:thumbnailator'
+
+    /*******************************
+     * Compile Only Dependencies
+     *******************************/
+
+    /*******************************
+     * Runtime Only Dependencies
+     *******************************/
+
+    /*******************************
+     * Test Dependencies
+     *******************************/
+    testImplementation('org.springframework.boot:spring-boot-starter-test') {
+        exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
+    }
+}

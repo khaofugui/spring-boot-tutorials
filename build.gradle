@@ -274,6 +274,8 @@ subprojects {
 
       dependency("com.github.lianjiatech:retrofit-spring-boot-starter:2.2.5")
       dependency("com.alibaba.csp:sentinel-core:1.8.0")
+
+      dependency("net.coobird:thumbnailator:0.4.13")
     }
   }
 
@@ -312,6 +314,7 @@ subprojects {
      *******************************/
     api 'org.mapstruct:mapstruct-jdk8'
     api 'com.google.guava:guava'
+    api 'org.apache.commons:commons-lang3'
 
     /*******************************
      * Compile Only Dependencies

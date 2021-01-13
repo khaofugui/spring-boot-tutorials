@@ -8,4 +8,5 @@ include 'spring-boot-graalvm'
 include 'spring-boot-jvm-optimize'
 include 'spring-boot-retrofit'
 include 'spring-boot-thumbnailator'
+include 'spring-boot-keycloak'
 

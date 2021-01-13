@@ -246,6 +246,7 @@ subprojects {
       mavenBom SpringBootPlugin.BOM_COORDINATES
       mavenBom "com.squareup.okhttp3:okhttp-bom:4.9.0"
       mavenBom "org.keycloak:keycloak-dependencies-server-all:${oauth2.revKeycloak}"
+      mavenBom "org.keycloak.bom:keycloak-adapter-bom:${oauth2.revKeycloak}"
     }
 
     /** 在这里定义公用依赖 */
@@ -276,6 +277,8 @@ subprojects {
       dependency("com.alibaba.csp:sentinel-core:1.8.0")
 
       dependency("net.coobird:thumbnailator:0.4.13")
+
+      dependency("org.hsqldb:hsqldb:2.5.1")
     }
   }
 

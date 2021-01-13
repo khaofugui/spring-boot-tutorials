@@ -5,7 +5,7 @@
   <!--日志级别以及优先级排序: OFF > FATAL > ERROR > WARN > INFO > DEBUG > TRACE > ALL -->
   <!-- Properties定义一些属性，下面可以引用 -->
   <Properties>
-    <Property name="APP" value="spring-boot-retrofit"/>
+    <Property name="APP" value="spring-boot-keycloak"/>
     <!-- 控制台日志的输出格式 -->
     <Property name="LOG_PATTERN"
               value="%clr{%d{yyyy-MM-dd HH:mm:ss.SSS}}{faint} %clr{%5p} %clr{${sys:%pid}}{magenta}%clr{[%15.15t]}{faint} %clr{%-40.40c{1.}}{cyan} %clr{:}{faint} %m%n%wEx"/>

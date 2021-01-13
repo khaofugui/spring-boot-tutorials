@@ -4,6 +4,9 @@ import org.jboss.resteasy.core.Dispatcher;
 import org.jboss.resteasy.spi.ResteasyProviderFactory;
 import org.keycloak.common.util.ResteasyProvider;
 
+/**
+ * @author xue.zeng
+ */
 public class Resteasy3Provider implements ResteasyProvider {
 
   @Override

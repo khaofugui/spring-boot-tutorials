@@ -32,4 +32,5 @@
 | [spring-boot-swagger3](./swagger3)                           | 集成[swagger3](https://swagger.io/)，并且使用[knife4j](https://doc.xiaominfo.com/)美化API文档样式 |
 | [spring-boot-graalvm](./spring-boot-graalvm)<br/>[spring-boot-graalvm-maven](./spring-boot-graalvm-maven) | 集成[GraalVM](https://www.graalvm.org/)虚拟机                |
 | [spring-boot-jib](./spring-boot-jib)                         | 集成[Jib](https://github.com/GoogleContainerTools/jib) 谷歌最新开源的 Java 应用的 Docker 镜像生成工具 |
+| [spring-boot-keycloak](./spring-boot-keycloak)               | 集成Jboss开源身份和访问管理解决方案[Keycloak](https://www.keycloak.org/) |
 

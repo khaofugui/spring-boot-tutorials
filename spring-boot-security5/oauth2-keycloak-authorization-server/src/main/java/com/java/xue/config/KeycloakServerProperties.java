@@ -39,7 +39,7 @@ public class KeycloakServerProperties {
 
     String username = "admin";
 
-    String password = "admin";
+    String password = "123456";
 
     public String getUsername() {
       return username;

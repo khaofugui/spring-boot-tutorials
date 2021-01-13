@@ -11,12 +11,15 @@ import org.springframework.boot.context.properties.EnableConfigurationProperties
 import org.springframework.context.ApplicationListener;
 import org.springframework.context.annotation.Bean;
 
+/**
+ * @author xue.zeng
+ */
 @Slf4j
 @SpringBootApplication(exclude = LiquibaseAutoConfiguration.class)
 @EnableConfigurationProperties({KeycloakServerProperties.class})
-public class Oauth2KeycloakAuthServerAppliction {
+public class Oauth2KeycloakAuthServerApplication {
   public static void main(String[] args) throws Exception {
-    SpringApplication.run(Oauth2KeycloakAuthServerAppliction.class, args);
+    SpringApplication.run(Oauth2KeycloakAuthServerApplication.class, args);
   }
 
   @Bean

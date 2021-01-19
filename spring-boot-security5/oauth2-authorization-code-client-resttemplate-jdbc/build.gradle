@@ -1,0 +1,38 @@
+apply plugin: "java-library"
+
+dependencies {
+    /*******************************
+     * Annotation Processors
+     *******************************/
+    annotationProcessor("org.springframework.boot:spring-boot-configuration-processor")
+
+    /*******************************
+     * API Dependencies
+     *******************************/
+
+    /*******************************
+     * Implementation Dependencies
+     *******************************/
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+    implementation 'org.springframework.boot:spring-boot-starter-security'
+    implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
+    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+    implementation 'mysql:mysql-connector-java'
+
+    /*******************************
+     * Compile Only Dependencies
+     *******************************/
+
+    /*******************************
+     * Runtime Only Dependencies
+     *******************************/
+
+    /*******************************
+     * Test Dependencies
+     *******************************/
+    testImplementation('org.springframework.boot:spring-boot-starter-test') {
+        exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
+    }
+
+    testImplementation("io.specto:hoverfly-java-junit5:0.13.1")
+}

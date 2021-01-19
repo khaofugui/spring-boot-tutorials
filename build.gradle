@@ -264,7 +264,7 @@ subprojects {
       dependency("org.springframework.security.oauth.boot:spring-security-oauth2-autoconfigure:${springBootVersion}")
 
       dependency("org.jboss.resteasy:resteasy-core:${oauth2.revJbossResteasy}")
-      dependency("org.jboss.resteasy:resteasy-jackson2-provider:${oauth2.revJbossResteasy}")
+      dependency("org.jboss.resteasy:resteasy-jackson2-provider:3.12.1.Final")
 
       dependency("com.h2database:h2:${revH2database}")
 
@@ -278,7 +278,10 @@ subprojects {
 
       dependency("net.coobird:thumbnailator:0.4.13")
 
+      dependency("mysql:mysql-connector-java:8.0.18")
       dependency("org.hsqldb:hsqldb:2.5.1")
+
+      dependency("org.springframework.security.oauth:spring-security-oauth2:2.5.0.RELEASE")
     }
   }
 
@@ -305,6 +308,12 @@ subprojects {
   dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
     implementation('org.springframework.boot:spring-boot-starter-log4j2')
+    if (JavaVersion.current().ordinal() >= JavaVersion.VERSION_1_9.ordinal()) {
+      // 查看文档 https://stackoverflow.com/questions/43574426/java-how-to-resolve-java-lang-noclassdeffounderror-javax-xml-bind-jaxbexceptio
+      // https://github.com/spring-projects/spring-boot/wiki/Spring-Boot-with-Java-9-and-above#jaxb
+      implementation 'org.glassfish.jaxb:jaxb-runtime'
+    }
+
 
     /*******************************
      * Annotation Processors

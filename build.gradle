@@ -280,6 +280,7 @@ subprojects {
 
       dependency("mysql:mysql-connector-java:8.0.18")
       dependency("org.hsqldb:hsqldb:2.5.1")
+      dependency("org.flywaydb:flyway-core:7.5.0")
 
       dependency("org.springframework.security.oauth:spring-security-oauth2:2.5.0.RELEASE")
     }
@@ -313,7 +314,6 @@ subprojects {
       // https://github.com/spring-projects/spring-boot/wiki/Spring-Boot-with-Java-9-and-above#jaxb
       implementation 'org.glassfish.jaxb:jaxb-runtime'
     }
-
 
     /*******************************
      * Annotation Processors

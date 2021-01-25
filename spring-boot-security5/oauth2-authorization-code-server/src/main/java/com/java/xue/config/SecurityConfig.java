@@ -36,9 +36,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
   @Override
   protected void configure(HttpSecurity http) throws Exception {
-    http.authorizeRequests()
-        .anyRequest()
-        .authenticated() // 所有请求都需要通过认证
+    http.authorizeRequests() // 开启授权配置
+        .anyRequest().authenticated() // 所有请求都需要通过认证
         .and()
         .httpBasic() // Basic提交
         .and()

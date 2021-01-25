@@ -1,0 +1,12 @@
+spring:
+  application:
+    name: spring-boot-flyway
+
+  datasource:
+    url: jdbc:mysql://localhost:3306/micro_service
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    username: root
+    password: 123456789
+
+server:
+  port: 8080

@@ -12,5 +12,5 @@ include 'spring-boot-jvm-optimize'
 include 'spring-boot-retrofit'
 include 'spring-boot-thumbnailator'
 include 'spring-boot-keycloak'
-
+include 'spring-boot-flyway'
 
